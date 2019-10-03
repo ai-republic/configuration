@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>configuration-solr</artifactId>
+	<parent>
+		<groupId>com.ai-republic</groupId>
+		<artifactId>configuration-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<properties>
+		<solr.version>4.10.2</solr.version>
+	</properties>
+
+	<dependencies>
+		<!-- local dependencies -->
+		<dependency>
+			<groupId>com.ai-republic</groupId>
+			<artifactId>configuration-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- SolR -->
+		<dependency>
+			<groupId>org.apache.solr</groupId>
+			<artifactId>solr-solrj</artifactId>
+			<version>${solr.version}</version>
+		</dependency>
+
+		<!-- JSON libs -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+		</dependency>
+		
+	</dependencies>
+</project>
