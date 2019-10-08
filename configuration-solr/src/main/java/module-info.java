@@ -14,6 +14,6 @@ module configuration.solr {
     requires configuration.api;
     requires exception;
     requires java.annotation;
-    requires javax.inject;
+    requires jakarta.inject;
     requires solr.solrj;
 }

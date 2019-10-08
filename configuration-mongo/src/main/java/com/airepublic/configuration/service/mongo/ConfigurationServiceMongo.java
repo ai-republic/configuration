@@ -26,8 +26,6 @@ import javax.annotation.PreDestroy;
 import javax.enterprise.inject.Default;
 import javax.inject.Singleton;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.airepublic.configuration.api.ConfigurationServiceException;
 import com.airepublic.configuration.api.ConfigurationServiceException.ErrorCode;
 import com.airepublic.configuration.api.IConfiguration;
@@ -57,7 +55,6 @@ public class ConfigurationServiceMongo implements IConfigurationService, AutoClo
     private String configurationCollectionName;
     private final ObjectMapper mapper = new ObjectMapper();
 
-
     /**
      * Constructor.
      */
@@ -74,7 +71,7 @@ public class ConfigurationServiceMongo implements IConfigurationService, AutoClo
         // initialize mongo client
         String serverStringList = props.getString("mongo.servers");
 
-        if (StringUtils.isBlank(serverStringList)) {
+        if (serverStringList == null || serverStringList.isBlank()) {
             serverStringList = "localhost";
         }
 

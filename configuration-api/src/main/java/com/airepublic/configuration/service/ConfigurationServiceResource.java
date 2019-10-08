@@ -15,6 +15,9 @@
 */
 package com.airepublic.configuration.service;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.interceptor.Interceptors;
@@ -30,11 +33,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.SecurityContext;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.airepublic.configuration.api.IConfigurationService;
 import com.airepublic.exception.ExceptionInterceptor;
+import com.airepublic.logging.java.LogLevel;
+import com.airepublic.logging.java.LoggerConfig;
 
 /**
  * REST webservice to access and manage configurations.
@@ -45,14 +47,15 @@ import com.airepublic.exception.ExceptionInterceptor;
 @Interceptors(ExceptionInterceptor.class)
 @RequestScoped
 public class ConfigurationServiceResource {
-    private static final Logger LOG = LoggerFactory.getLogger(ConfigurationServiceResource.class);
+    @Inject
+    @LoggerConfig(level = LogLevel.INFO)
+    private Logger logger;
 
     @Inject
     private IConfigurationService service;
 
     @Context
     private SecurityContext securityContext;
-
 
     /**
      * Gets the configuration as Json.
@@ -78,7 +81,7 @@ public class ConfigurationServiceResource {
             final Response response = Response.ok().entity(json).build();
             return response;
         } catch (final Exception e) {
-            LOG.error("Error reading configuration '" + id + "'!", e);
+            logger.log(Level.SEVERE, "Error reading configuration '" + id + "'!", e);
         }
 
         return Response.status(Status.BAD_REQUEST).build();
@@ -103,7 +106,7 @@ public class ConfigurationServiceResource {
         try {
             service.saveConfigurationAsJson(json);
         } catch (final Exception e) {
-            LOG.error("Error saving configuration '" + json + "'!", e);
+            logger.log(Level.SEVERE, "Error saving configuration '" + json + "'!", e);
             return Response.status(Status.BAD_REQUEST).build();
         }
 
@@ -132,7 +135,7 @@ public class ConfigurationServiceResource {
         try {
             service.removeConfiguration(id, variation);
         } catch (final Exception e) {
-            LOG.error("Error removing configuration '" + id + "'!", e);
+            logger.log(Level.SEVERE, "Error removing configuration '" + id + "'!", e);
             return Response.status(Status.BAD_REQUEST).build();
         }
 

@@ -12,38 +12,40 @@
 
 	<properties>
 		<rest.version>2.1.1</rest.version>
-		<interceptor.version>1.2.2</interceptor.version>
+		<jackson.version>2.9.10</jackson.version>
 		<jersey-client.version>2.27</jersey-client.version>
 	</properties>
 
 	<dependencies>
-		
 		<dependency>
-			<groupId>javax.interceptor</groupId>
-			<artifactId>javax.interceptor-api</artifactId>
-			<version>${interceptor.version}</version>
+			<groupId>com.ai-republic</groupId>
+			<artifactId>exception</artifactId>
+			<version>1.0.0</version>
 		</dependency>
-		
 		
 		<!-- JSON libs -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.jaxrs</groupId>
 			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<version>${jackson.version}</version>
 			<scope>test</scope>
 		</dependency>
 

@@ -9,11 +9,10 @@ module configuration.api {
     exports com.airepublic.configuration.service;
     exports com.airepublic.configuration.api;
 
-    requires org.apache.commons.lang3;
+    requires com.airepublic.logging.java;
     requires exception;
-    requires cdi.api;
-    requires javax.inject;
-    requires transitive javax.interceptor.api;
+    requires jakarta.enterprise.cdi.api;
+    requires jakarta.inject;
+    requires transitive jakarta.interceptor.api;
     requires transitive java.ws.rs;
-    requires org.slf4j;
 }

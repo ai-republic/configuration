@@ -15,7 +15,7 @@
 */
 package com.airepublic.configuration.api;
 
-import org.apache.commons.lang3.StringUtils;
+import java.util.Objects;
 
 /**
  * An abstract configuration implementing the basics of the {@link IConfiguration} interface.
@@ -23,68 +23,74 @@ import org.apache.commons.lang3.StringUtils;
  * @author Torsten.Oltmanns@ai-republic.com
  */
 public abstract class AbstractConfiguration implements IConfiguration {
-	private static final long serialVersionUID = -2003949602323748793L;
-	private String id;
-	private String variation;
-	
-	/**
-	 * Default constructor.
-	 */
-	public AbstractConfiguration() {
-	}
-	
-	/**
-	 * Constructor.
-	 * 
-	 * @param id the id
-	 * @param variation the variation
-	 */
-	public AbstractConfiguration(String id, String variation) {
-		this.id = id;
-		this.variation = variation;
-	}
-	
-	@Override
-	public abstract void resetToDefault() throws ConfigurationServiceException;
-	
-	
-	/**
-	 * Builds the name for the current variation, i.e. &lt;id&gt;-&lt;variation&gt;.
-	 * If no variation is set, null or empty string, then only the id is returned.
-	 * 
-	 * @return the variation name
-	 */
-	protected String buildVariationName() {
-		String bundleName = getId();
-			
-		if (StringUtils.isNotBlank(variation)) {
-			bundleName += "-" + getVariation();
-		}
-		
-		return bundleName;
-	}
-	
-	@Override
-	public final String getId() {
-		return id;
-	}
-	
-	@Override
-	public final void setId(String id) {
-		this.id = id;
-	}
+    private static final long serialVersionUID = -2003949602323748793L;
+    private String id;
+    private String variation;
 
-	@Override
-	public final String getVariation() {
-		if (StringUtils.isNotBlank(variation)) {
-			return variation;
-		}
-		
-		return "";
-	}
+    /**
+     * Default constructor.
+     */
+    public AbstractConfiguration() {
+    }
 
-	@Override
-	public final void setVariation(String variation) {
-		this.variation = variation;
-	}
+
+    /**
+     * Constructor.
+     * 
+     * @param id the id
+     * @param variation the variation
+     */
+    public AbstractConfiguration(final String id, final String variation) {
+        this.id = id;
+        this.variation = variation;
+    }
+
+
+    @Override
+    public abstract void resetToDefault() throws ConfigurationServiceException;
+
+
+    /**
+     * Builds the name for the current variation, i.e. &lt;id&gt;-&lt;variation&gt;. If no variation
+     * is set, null or empty string, then only the id is returned.
+     * 
+     * @return the variation name
+     */
+    protected String buildVariationName() {
+        String bundleName = getId();
+
+        if (Objects.nonNull(variation) && !variation.isBlank()) {
+            bundleName += "-" + getVariation();
+        }
+
+        return bundleName;
+    }
+
+
+    @Override
+    public final String getId() {
+        return id;
+    }
+
+
+    @Override
+    public final void setId(final String id) {
+        this.id = id;
+    }
+
+
+    @Override
+    public final String getVariation() {
+        if (Objects.nonNull(variation) && !variation.isBlank()) {
+            return variation;
+        }
+
+        return "";
+    }
+
+
+    @Override
+    public final void setVariation(final String variation) {
+        this.variation = variation;
+    }
 }
