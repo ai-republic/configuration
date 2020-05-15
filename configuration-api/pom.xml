@@ -12,7 +12,7 @@
 
 	<properties>
 		<rest.version>2.1.1</rest.version>
-		<jackson.version>2.9.10</jackson.version>
+		<jackson.version>2.11.0</jackson.version>
 		<jersey-client.version>2.27</jersey-client.version>
 	</properties>
 
