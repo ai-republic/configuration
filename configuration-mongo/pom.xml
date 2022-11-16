@@ -9,7 +9,7 @@
 	</parent>
 
 	<properties>
-		<jackson.version>2.9.10</jackson.version>
+		<jackson.version>2.12.7.1</jackson.version>
 		<mongo.version>2.11.4</mongo.version>
 	</properties>
 
